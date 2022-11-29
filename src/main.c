@@ -1,6 +1,9 @@
+// sdl headers
 #define SDL_MAIN_HANDLED
 #include <SDL2\SDL.h>
+// standard headers
 #include <stdbool.h>
+// my headers
 #include <defs.h>
 
 int main(int argc, char **argv)
