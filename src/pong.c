@@ -22,7 +22,7 @@ Pong *pong;
 void init_pong() {
     pong = malloc(sizeof(Pong));
 
-
+    
 }
 
 void free_pong() {
