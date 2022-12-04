@@ -8,6 +8,8 @@
 // My headers
 #include <states.h>
 #include <events.h>
+#include <window.h>
+#include <pong.h>
 
 Game *game;
 SDL_Event event;
@@ -20,6 +22,7 @@ void init_game() {
 
 void end_game() {
     free(game);
+    free_pong();
 }
 
 Game *get_game() {
@@ -35,5 +38,15 @@ void set_game_running(bool running) {
 }
 
 void tick() {
+    // events check
     check_events(event);
+
+    // physics check
+
+
+    // render updates
+    update_window();
+
+    // setting FPS to 60
+    SDL_Delay(16);
 }
