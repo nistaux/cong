@@ -86,6 +86,25 @@ void check_pong_collision() {
         pong->dir.y = pong->dir.y * -1;
         print_debug("hit bottom wall");
     }
+
+    // hitting puck
+    if((pong->coord.x < (5+PUCK_WIDTH)) && ((get_puck_loc()- PUCK_HEIGHT/2) < pong->coord.y) && (pong->coord.y < (get_puck_loc()+ PUCK_HEIGHT/2))) {
+        if (pong->dir.x < 0) {
+            pong->dir.x = pong->dir.x * -1;
+            if(pong->dir.x < 0) {
+                pong->dir.x -= 1;
+            }else {
+                pong->dir.x += 1;
+            }
+            if(pong->dir.y < 0) {
+                pong->dir.y -= 0.2;
+            }else {
+                pong->dir.y += 0.2;
+            }
+            print_debug("hit puck");
+        }
+        
+    }
 }
 
 Coordinate get_pong_coords() {
