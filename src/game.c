@@ -11,6 +11,7 @@
 #include <window.h>
 #include <pong.h>
 #include <rand.h>
+#include <puck.h>
 
 Game *game;
 SDL_Event event;
@@ -22,11 +23,13 @@ void init_game() {
 
     init_pong();
     init_rand();
+    init_puck();
 }
 
 void end_game() {
     free(game);
     free_pong();
+    free_puck();
 }
 
 Game *get_game() {
@@ -47,10 +50,9 @@ void tick() {
 
     // physics check
     check_pong_collision();
-    //move_puck();
+    move_puck(); 
     move_pong();
     
-
     // render updates
     update_window();
 

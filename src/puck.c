@@ -1,3 +1,4 @@
+#include <SDL2/SDL.h>
 #include <stdlib.h>
 #include <defs.h>
 
@@ -16,6 +17,13 @@ void free_puck() {
     free(puck);
 }
 
-void set_puck_pos(int loc) {
-    puck->loc = loc;
+void move_puck() {
+    int yMouse;
+    SDL_GetMouseState(NULL, &yMouse);
+    puck->loc = yMouse;
+    
+}
+
+int get_puck_loc() {
+    return puck->loc;
 }

@@ -3,6 +3,7 @@
 #include <rand.h>
 #include <math.h>
 #include <defs.h>
+#include <puck.h>
 
 typedef struct {
     float x;
