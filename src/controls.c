@@ -7,6 +7,18 @@ void handle_keypress(SDL_Event e) {
 
     // Controls based on current Game State
     switch (get_game()->state) {
+        // INTRO Game State
+        case INTRO:
+            switch (key) {
+                // Esc Key
+                case SDLK_ESCAPE:
+                    set_game_running(false);
+                    break;
+                // Add more cases for different keypresses
+                default:
+                    break;
+            }
+            break;
         // Title Game State
         case TITLE:
             switch (key) {
@@ -19,6 +31,7 @@ void handle_keypress(SDL_Event e) {
                     break;
             }
             break;
+        // Game Game State - This is when the game is actually being played
         case GAME:
             switch (key) {
                 // Esc Key
@@ -30,6 +43,19 @@ void handle_keypress(SDL_Event e) {
                     break;
             }
             break;
+        // Pause Game State - This is when the game is paused
+        case PAUSE:
+            switch (key) {
+                // Esc Key
+                case SDLK_ESCAPE:
+                    set_game_running(false);
+                    break;
+                // Add more cases for different keypresses
+                default:
+                    break;
+            }
+            break;
+        // End Game State - When the game is over
         case END:
             switch (key) {
                 // Esc Key
