@@ -1,8 +1,8 @@
 #pragma once
 
 typedef struct {
-    int x;
-    int y;
+    float x;
+    float y;
 } Coordinate;
 
 typedef struct {
@@ -12,10 +12,12 @@ typedef struct {
 
 typedef struct {
     Coordinate coord;
-    int speed;
+    float speed;
     Direction dir;
 } Pong;
 
 void init_pong();
 void free_pong();
+void move_pong();
 void check_pong_collision();
+Coordinate get_pong_coords();

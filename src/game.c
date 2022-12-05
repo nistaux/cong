@@ -10,6 +10,7 @@
 #include <events.h>
 #include <window.h>
 #include <pong.h>
+#include <rand.h>
 
 Game *game;
 SDL_Event event;
@@ -18,6 +19,9 @@ void init_game() {
     game = malloc(sizeof(Game));
     game->running = true;
     game->state = TITLE;
+
+    init_pong();
+    init_rand();
 }
 
 void end_game() {
@@ -42,7 +46,10 @@ void tick() {
     check_events(event);
 
     // physics check
-
+    check_pong_collision();
+    //move_puck();
+    move_pong();
+    
 
     // render updates
     update_window();
