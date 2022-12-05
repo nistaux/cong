@@ -37,7 +37,7 @@ Game *get_game() {
 }
 
 void set_game_state(State state) {
-    game->running = state;
+    game->state = state;
 }
 
 void set_game_running(bool running) {

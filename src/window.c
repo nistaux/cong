@@ -15,6 +15,7 @@ void init_sdl() {
 }
 
 void end_sdl() {
+    SDL_DestroyRenderer(SDL_GetRenderer(window));
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
