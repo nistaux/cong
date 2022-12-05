@@ -5,12 +5,13 @@
 // My headers
 #include <defs.h>
 #include <render.h>
+#include <stdio.h>
 
 SDL_Window *window;
 
 void init_sdl() {
     SDL_Init(SDL_INIT_VIDEO);
-    window = SDL_CreateWindow("Cong", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     init_renderer(window);
 }
 
