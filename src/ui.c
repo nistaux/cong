@@ -16,7 +16,7 @@ UI ui;
 
 void init_ui(SDL_Renderer *renderer) {
     // Loading in TITLE BACKGROUND 
-    
+
     /* Will be implemented later
 
     ui.title_bg_img = IMG_LoadTexture(renderer, TITLE_BACKGROUND_PATH);
@@ -71,4 +71,9 @@ void draw_pause(SDL_Renderer *renderer) {
 // Drawing END
 void draw_end(SDL_Renderer *renderer) {
 
+}
+
+// Drawing DEBUG INFO
+void draw_debug(SDL_Renderer *renderer) {
+    
 }

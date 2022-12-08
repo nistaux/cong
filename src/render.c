@@ -39,7 +39,9 @@ void update_renderer(){
         default:
             break;
     }
-    
+    if(get_game()->debug){
+        draw_debug(renderer);
+    }
 }
 
 void present_renderer(){

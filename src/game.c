@@ -6,11 +6,24 @@
 #include <SDL2/SDL.h>
 
 // My headers
-#include <states.h>
 #include <events.h>
 #include <window.h>
 #include <rand.h>
 #include <debug.h>
+
+typedef enum {
+    INTRO,
+    TITLE,
+    GAME,
+    PAUSE,
+    END
+} State;
+
+typedef struct {
+    bool running;
+    bool debug;
+    State state;
+} Game;
 
 typedef struct {
     unsigned int prevTime;
@@ -28,11 +41,12 @@ SDL_Event event;
 
 void init_game() {
 
-    // Creating dynamic mem for Game State
+    // Setting Game Struct Init Settings
     game.running = true;
     game.state = TITLE;
+    game.debug = false;
 
-    // Creating dynamic mem for Game Timer(FPS and Processing times)
+    // Setting Timer Struct Init Settings
     timer.prevTime = 0;
     timer.currentTime = 0;
     timer.deltaTime = 0.0f;
@@ -64,6 +78,8 @@ void set_game_running(bool running) {
 }
 
 void tick() {
+    // Getting information on current processing speed
+    // and using that to set FPS and Processing rate
     timer.prevTime = timer.currentTime;
     timer.currentTime = SDL_GetTicks();
     timer.deltaTime = (timer.currentTime-timer.prevTime)/1000.0f;

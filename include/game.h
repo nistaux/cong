@@ -1,5 +1,19 @@
 #pragma once
-#include <states.h>
+#include <stdbool.h>
+
+typedef enum {
+    INTRO,
+    TITLE,
+    GAME,
+    PAUSE,
+    END
+} State;
+
+typedef struct {
+    bool running;
+    bool debug;
+    State state;
+} Game;
 
 Game *get_game();
 void init_game();
