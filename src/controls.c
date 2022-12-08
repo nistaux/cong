@@ -1,6 +1,8 @@
-#include <SDL2/SDL.h>
-#include <game.h>
 #include <stdbool.h>
+
+#include <SDL2/SDL.h>
+
+#include <game.h>
 
 void handle_keypress(SDL_Event e) {
     int key = e.key.keysym.sym;

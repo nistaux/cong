@@ -9,9 +9,7 @@
 #include <states.h>
 #include <events.h>
 #include <window.h>
-#include <pong.h>
 #include <rand.h>
-#include <puck.h>
 #include <debug.h>
 
 typedef struct {
@@ -24,94 +22,63 @@ typedef struct {
     float renderIter;
 } Timer;
 
-Game *game;
-Timer *timer;
+Game game;
+Timer timer;
 SDL_Event event;
 
 void init_game() {
-    game = malloc(sizeof(Game));
-    game->running = true;
-    game->state = GAME;
 
-    timer = malloc(sizeof(Timer));
-    timer->prevTime = 0;
-    timer->currentTime = 0;
-    timer->deltaTime = 0.0f;
-    timer->physicsTime = 0.0f;
-    timer->renderTime = 0.0f;
+    // Creating dynamic mem for Game State
+    game.running = true;
+    game.state = TITLE;
 
-    // physics set tick rate (60 Ticks/Sec)
-    timer->physicsIter = (1.0/60.0);
-    // render set frame rate (120 Frames/Sec)
-    timer->renderIter = (1.0/120.0);
+    // Creating dynamic mem for Game Timer(FPS and Processing times)
+    timer.prevTime = 0;
+    timer.currentTime = 0;
+    timer.deltaTime = 0.0f;
+    timer.physicsTime = 0.0f;
+    timer.renderTime = 0.0f;
+
+    // Processing tick rate (60 Ticks/Sec)
+    timer.physicsIter = (1.0/60.0);
+    // Render set FPS (120 Frames/Sec)
+    timer.renderIter = (1.0/120.0);
     
-
-    init_pong();
     init_rand();
-    init_puck();
 }
 
 void end_game() {
-    free(game);
-    free_pong();
-    free_puck();
+    //free(game);
 }
 
 Game *get_game() {
-    return game;
+    return &game;
 }
 
 void set_game_state(State state) {
-    game->state = state;
+    game.state = state;
 }
 
 void set_game_running(bool running) {
-    game->running = running;
+    game.running = running;
 }
 
 void tick() {
-    // FIGURE OUT WHAT THE FUCK IM DOING WITH MY LIFE
+    timer.prevTime = timer.currentTime;
+    timer.currentTime = SDL_GetTicks();
+    timer.deltaTime = (timer.currentTime-timer.prevTime)/1000.0f;
+    timer.physicsTime += timer.deltaTime;
+    timer.renderTime += timer.deltaTime;
 
-    timer->prevTime = timer->currentTime;
-    timer->currentTime = SDL_GetTicks();
-    timer->deltaTime = (timer->currentTime-timer->prevTime)/1000.0f;
-    timer->physicsTime += timer->deltaTime;
-    timer->renderTime += timer->deltaTime;
+    if (timer.physicsIter <= timer.physicsTime) {
+        timer.physicsTime = 0.0;
 
-    //print_debug_f("physicsTime - %f", timer->physicsTime);
-    //print_debug_f("renderTime - %f", timer->renderTime);
-
-    if (timer->physicsIter <= timer->physicsTime) {
-        timer->physicsTime = 0.0;
-
+        // Check control input
         check_events(event);
-
-        switch (game->state)
-        {
-        case INTRO:
-            /* code */
-            break;
-        case TITLE:
-            /* code */
-            break;
-        case GAME:
-            /* code */
-            break;
-        case PAUSE:
-            /* code */
-            break;
-        case END:
-            /* code */
-            break;
-        default:
-            break;
-        }
-        check_pong_collision();
-        move_puck(); 
-        move_pong();
     }
-    if (timer->renderIter <= timer->renderTime) {
-        timer->renderTime = 0.0;
+    if (timer.renderIter <= timer.renderTime) {
+        timer.renderTime = 0.0;
+
         // render updates
         update_window();
     }
