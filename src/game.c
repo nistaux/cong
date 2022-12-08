@@ -31,7 +31,7 @@ SDL_Event event;
 void init_game() {
     game = malloc(sizeof(Game));
     game->running = true;
-    game->state = TITLE;
+    game->state = GAME;
 
     timer = malloc(sizeof(Timer));
     timer->prevTime = 0;
@@ -70,6 +70,8 @@ void set_game_running(bool running) {
 }
 
 void tick() {
+    // FIGURE OUT WHAT THE FUCK IM DOING WITH MY LIFE
+
     timer->prevTime = timer->currentTime;
     timer->currentTime = SDL_GetTicks();
     timer->deltaTime = (timer->currentTime-timer->prevTime)/1000.0f;
@@ -83,6 +85,27 @@ void tick() {
         timer->physicsTime = 0.0;
 
         check_events(event);
+
+        switch (game->state)
+        {
+        case INTRO:
+            /* code */
+            break;
+        case TITLE:
+            /* code */
+            break;
+        case GAME:
+            /* code */
+            break;
+        case PAUSE:
+            /* code */
+            break;
+        case END:
+            /* code */
+            break;
+        default:
+            break;
+        }
         check_pong_collision();
         move_puck(); 
         move_pong();

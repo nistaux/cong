@@ -1,19 +1,33 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 #include <window.h>
 #include <pong.h>
 #include <defs.h>
 #include <puck.h>
+#include <game.h>
+
+#define TITLE_BACKGROUND_PATH  "./res/images/backgrounds/tbg.png"
+#define GAME_BACKGROUND_PATH   "./res/images/backgrounds/gbg.png"
+
+typedef struct {
+    SDL_Texture *tbg;
+    SDL_Texture *gbg;
+} Bgs;
 
 SDL_Renderer *renderer;
+Bgs *bgs;
 
 void init_renderer(SDL_Window *window){
     renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED);
+    bgs = malloc(sizeof(Bgs));
+    bgs->gbg = IMG_LoadTexture(renderer, GAME_BACKGROUND_PATH);
+    bgs->tbg = IMG_LoadTexture(renderer, TITLE_BACKGROUND_PATH);
 }
 
-void draw_background() {
-    SDL_SetRenderDrawColor( renderer, 54, 46, 92, 255 );
+void draw_background(const char *path[]) {
     SDL_RenderClear(renderer);
+    //bg = IMG_LoadTexture
 }
 
 void draw_pong() {
@@ -46,7 +60,15 @@ void draw_puck() {
 
 
 void update_renderer(){
-    draw_background(); 
+    switch (get_game()->state)
+    {
+    case TITLE:
+        break;
+        draw_background(GAME_BACKGROUND_PATH);
+    default:
+        break;
+    }
+    
     draw_pong();
     draw_puck();
     
