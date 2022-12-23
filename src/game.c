@@ -56,7 +56,7 @@ void init_game() {
     // Processing tick rate (60 Ticks/Sec)
     timer.physicsIter = (1.0/60.0);
     // Render set FPS (120 Frames/Sec)
-    timer.renderIter = (1.0/120.0);
+    timer.renderIter = (1.0/100.0);
     
     init_rand();
 }
