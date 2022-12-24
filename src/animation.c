@@ -10,6 +10,6 @@ typedef struct {
     float animTime;
 } Animator;
 
-void create_animation(SDL_Renderer *renderer){
-    
+void animate(){
+
 }

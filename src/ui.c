@@ -58,6 +58,9 @@ void draw_game(SDL_Renderer *renderer) {
         if(SDL_RenderCopy(renderer, ui.game_bg_img, NULL, NULL) != 0) {
             printf("SDL: Error Rendering Image - %s\n", SDL_GetError());
         }
+
+        // Other stuff to draw on this frame
+        
     }else {
         printf("SDL: Error Clearing Renderer - %s\n", SDL_GetError());
     }
