@@ -4,6 +4,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include <game.h>
+#include <player.h>
+
 #define TITLE_BACKGROUND_PATH  "./res/images/backgrounds/tbg.png"
 #define GAME_BACKGROUND_PATH   "./res/images/backgrounds/gbg.png"
 
@@ -42,9 +45,11 @@ void draw_title(SDL_Renderer *renderer) {
     if (SDL_RenderClear(renderer) == 0) {
 
         // Rendering Background
-        if(SDL_RenderCopy(renderer, ui.game_bg_img, NULL, NULL) != 0) {
-            printf("SDL: Error Rendering Image - %s\n", SDL_GetError());
-        }
+        //if(SDL_RenderCopy(renderer, ui.game_bg_img, NULL, NULL) != 0) {
+        //    printf("SDL: Error Rendering Image - %s\n", SDL_GetError());
+        //}
+        // Rendering Player
+        render_player(renderer, get_timer_delta());
     }else {
         printf("SDL: Error Clearing Renderer - %s\n", SDL_GetError());
     }

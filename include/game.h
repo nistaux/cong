@@ -16,6 +16,7 @@ typedef struct {
 } Game;
 
 Game *get_game();
+float get_timer_delta();
 void init_game();
 void end_game();
 void set_game_state(State state);

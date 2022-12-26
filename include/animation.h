@@ -5,6 +5,7 @@ typedef struct {
     unsigned int currentTime;
     float deltaTime;
     float animTime;
+    float animIter;
     int total_frames;
     int frame_diff;
 } Animator;

@@ -10,6 +10,7 @@
 #include <window.h>
 #include <rand.h>
 #include <debug.h>
+#include <player.h>
 
 typedef enum {
     INTRO,
@@ -57,7 +58,6 @@ void init_game() {
     timer.physicsIter = (1.0/60.0);
     // Render set FPS (120 Frames/Sec)
     timer.renderIter = (1.0/100.0);
-    
     init_rand();
 }
 
@@ -67,6 +67,10 @@ void end_game() {
 
 Game *get_game() {
     return &game;
+}
+
+float get_timer_delta() {
+    return timer.deltaTime;
 }
 
 void set_game_state(State state) {

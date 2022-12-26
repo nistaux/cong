@@ -7,6 +7,7 @@
 #include <defs.h>
 #include <game.h>
 #include <ui.h>
+#include <player.h>
 
 SDL_Renderer *renderer;
 
@@ -17,6 +18,7 @@ void init_renderer(SDL_Window *window){
     }else {
         printf("SDL: Error Creating Renderer - %s", SDL_GetError());
     }
+    create_player(renderer, 10, 10);
 }
 
 void update_renderer(){
