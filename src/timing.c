@@ -19,7 +19,16 @@ void free_timing(){
 }
 
 void update_timing(){
-
+    int curr_time;
+    
+    curr_time = SDL_GetTicks64();
+    if(game->state == GAME_STATE_PLAY){
+        time_manager->play.dt += (curr_time - time_manager->last_time);
+        time_manager->play.df += (curr_time - time_manager->last_time);
+    }
+    time_manager->master.dt += (curr_time - time_manager->last_time);
+    time_manager->master.df += (curr_time - time_manager->last_time);
+    time_manager->last_time = curr_time;
 }
 
 void swap_timing(){

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdbool.h>
 
 #include <global.h>
@@ -37,10 +38,13 @@ bool get_game_isRunning(){
 
 void run_game(){
     // do the game things
-    int curr_time;
-
+    int tps, fps;
+    tps = 1000/GAME_TICK_RATE;
+    fps = 1000/GAME_FRAME_RATE;
     manage_events();
+    update_timing();
 
-    curr_time = SDL_GetTicks64();
-    // continue ticking stuffs
+    if(time_manager->master.dt > tps){
+        time_manager->master.dt = 0;
+    }
 }
