@@ -1,6 +1,12 @@
 #include <stdio.h>
+#include <stdbool.h>
+
+#include <game.h>
 
 int main () {
-    printf("We out here cuh\n");
+    start_game();
+    while(get_game_isRunning()) 
+        run_game();
+    end_game();
     return 0;
 }
