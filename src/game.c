@@ -36,15 +36,21 @@ bool get_game_isRunning(){
     return game->running;
 }
 
+void tick_game(){
+    
+}
+
 void run_game(){
-    // do the game things
     int tps, fps;
+
+    manage_events();
+
     tps = 1000/GAME_TICK_RATE;
     fps = 1000/GAME_FRAME_RATE;
-    manage_events();
     update_timing();
-
-    if(time_manager->master.dt > tps){
-        time_manager->master.dt = 0;
-    }
+    
+    if(time_manager->master.dt > tps)
+        tick_game();
+    if(time_manager->master.df > fps)
+        update_window();
 }

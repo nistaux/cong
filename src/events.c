@@ -3,10 +3,10 @@
 
 void manage_events(){
     SDL_Event event;
-    SDL_PollEvent(&event);
-    
-    if(event.type == SDL_QUIT)
-        stop_game();
-    else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE) 
-        stop_game();
+    while(SDL_PollEvent(&event)){
+        if(event.type == SDL_QUIT)
+            stop_game();
+        else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE) 
+            stop_game();
+    }
 }
