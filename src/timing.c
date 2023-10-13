@@ -25,6 +25,14 @@ void free_timing(){
     free(time_manager);
 }
 
+void reset_timing_masterDT(){
+    time_manager->master.dt = 0;
+}
+
+void reset_timing_masterDF(){
+    time_manager->master.df = 0;
+}
+
 void update_timing(){
     int curr_time;
     
@@ -36,7 +44,7 @@ void update_timing(){
     time_manager->master.dt += (curr_time - time_manager->last_time);
     time_manager->master.df += (curr_time - time_manager->last_time);
     time_manager->last_time = curr_time;
-    printf("dt: %d\ndf: %d\n", time_manager->master.dt, time_manager->master.df);
+    //printf("dt: %d\ndf: %d\n", time_manager->master.dt, time_manager->master.df);
 }
 
 void swap_timing(){

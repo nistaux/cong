@@ -44,7 +44,10 @@ bool get_game_isRunning(){
 }
 
 void tick_game(){
-    
+    // do ticking things
+
+    // at end reset timing tick
+    reset_timing_masterDT();
 }
 
 void run_game(){

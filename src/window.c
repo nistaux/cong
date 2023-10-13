@@ -2,6 +2,8 @@
 
 #include <global.h>
 #include <draw.h>
+#include <timing.h>
+
 
 void create_window(){
     int ret;
@@ -38,4 +40,7 @@ void update_window(){
     SDL_RenderClear(renderer);
     draw_game(renderer);
     SDL_RenderPresent(renderer);
+
+    // at end reset timing for frames
+    reset_timing_masterDF();
 }
