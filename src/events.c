@@ -1,4 +1,5 @@
 #include <SDL.h>
+
 #include <game.h>
 
 void manage_events(){

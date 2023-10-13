@@ -4,6 +4,7 @@
 
 #include <game.h>
 #include <timing.h>
+#include <player.h>
 
 #define GAME_NAME "Cong"
 #define GAME_VERSION "v0.0.1.230929"
@@ -55,3 +56,4 @@ Timer
   - swap_time
 */
 extern TimeManager *time_manager;
+extern Player *player;

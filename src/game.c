@@ -1,10 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 #include <global.h>
 #include <window.h>
 #include <game.h>
 #include <events.h>
+#include <player.h>
 
 void start_game(){
     // init memory for game
@@ -18,6 +20,7 @@ void start_game(){
         .running = true,
     };
     *game = initialGame;
+    init_player();
 }
 
 void stop_game(){
