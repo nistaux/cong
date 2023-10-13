@@ -13,7 +13,7 @@
 #define GAME_WIDTH 1280
 #define GAME_HEIGHT 720
 
-#define GAME_TICK_RATE 250
+#define GAME_TICK_RATE 300
 #define GAME_FRAME_RATE 250
 
 extern SDL_Window *window;
