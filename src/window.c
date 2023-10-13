@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include <global.h>
+#include <draw.h>
 
 void create_window(){
     int ret;
@@ -34,15 +35,8 @@ void free_window(){
 }
 
 void update_window(){
+    printf("test34\n");
     SDL_RenderClear(renderer);
-    SDL_Rect rect = {
-        .x = 20,
-        .y = 20,
-        .w = 200,
-        .h = 200
-    };
-    SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
-    SDL_RenderDrawRect(renderer, &rect);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    draw_game(renderer);
     SDL_RenderPresent(renderer);
 }
