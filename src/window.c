@@ -35,7 +35,6 @@ void free_window(){
 }
 
 void update_window(){
-    printf("test34\n");
     SDL_RenderClear(renderer);
     draw_game(renderer);
     SDL_RenderPresent(renderer);

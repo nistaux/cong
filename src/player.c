@@ -7,6 +7,10 @@
 
 void init_player(){
     player = malloc(sizeof(*player));
+    if(player == NULL){
+        printf("Failed to allocate memory for player...\n");
+        exit(1);
+    }
 
     Sprite playerSprite = {
 

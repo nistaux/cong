@@ -14,6 +14,10 @@ void start_game(){
     create_timing();
 
     game = malloc(sizeof(*game));
+    if(game == NULL){
+        printf("Failed to allocate memory for game...\n");
+        exit(1);
+    }
     Game initialGame = {
         .prev_state = GAME_STATE_TITLE,
         .state = GAME_STATE_TITLE,
