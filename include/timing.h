@@ -14,10 +14,13 @@ typedef struct TimeManager {
 
 void create_timing();
 void free_timing();
+
 void update_timing();
+void swap_timing();
+
 void reset_timing_masterDT();
 void reset_timing_masterDF();
-void swap_timing();
+
 int get_timing_masterDT();
 int get_timing_masterDF();
 int get_timing_playDT();

@@ -7,11 +7,13 @@
 #include <game.h>
 #include <events.h>
 #include <player.h>
+#include <controller.h>
 
 void start_game(){
     // init memory for game
     create_window();
     create_timing();
+    create_controller();
 
     game = malloc(sizeof(*game));
     if(game == NULL){
@@ -33,8 +35,9 @@ void stop_game(){
 
 void end_game(){
     // free enemies - include enemy projectiles
-    // free player - include player projectiles
+    free_player();
     free(game);
+    free_controller();
     free_timing();
     free_window();
 }
@@ -45,7 +48,7 @@ bool get_game_isRunning(){
 
 void tick_game(){
     // do ticking things
-
+    tick_player();
     // at end reset timing tick
     reset_timing_masterDT();
 }
