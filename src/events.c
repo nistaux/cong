@@ -5,7 +5,7 @@
 #include <game.h>
 #include <controller.h>
 
-void handle_keypress(SDL_Event event){
+void handle_keypress_controller(SDL_Event event){
     int key = event.key.keysym.sym;
 
     switch(key){
@@ -55,11 +55,11 @@ void manage_events(){
     while(SDL_PollEvent(&event)){
         if(event.type == SDL_QUIT)
             stop_game();
-        else if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE) 
+        if(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE) 
             stop_game();
         
         if(event.type == SDL_KEYDOWN || event.type == SDL_KEYUP){
-            handle_keypress(event);
+            handle_keypress_controller(event);
         }
     }
 }
