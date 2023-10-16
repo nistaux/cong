@@ -8,12 +8,14 @@
 #include <events.h>
 #include <player.h>
 #include <controller.h>
+#include <ui.h>
 
 void start_game(){
     // init memory for game
     create_window();
     create_timing();
     create_controller();
+    create_ui();
 
     game = malloc(sizeof(*game));
     if(game == NULL){
@@ -37,6 +39,7 @@ void end_game(){
     // free enemies - include enemy projectiles
     free_player();
     free(game);
+    free_ui();
     free_controller();
     free_timing();
     free_window();

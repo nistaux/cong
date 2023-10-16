@@ -6,6 +6,7 @@
 #include <timing.h>
 #include <player.h>
 #include <controller.h>
+#include <ui.h>
 
 #define GAME_NAME "Cong"
 #define GAME_VERSION "v0.0.1.230929"
@@ -59,3 +60,4 @@ Timer
 extern TimeManager *time_manager;
 extern Player *player;
 extern Controller *controller;
+extern UI *ui;
