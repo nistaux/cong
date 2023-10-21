@@ -18,6 +18,7 @@ typedef struct Player {
     float speed;
     int health;
     int ammo;
+    double angleToArrow;
     bool default_direction; // facing right
     SDL_Rect sprite_rect;
     SDL_Texture *sprite_sheet;

@@ -57,6 +57,7 @@ void init_player(){
         .y = 300.0f,
         .speed = 0.8f,
         .default_direction = true,
+        .angleToArrow = 0.0,
 
         // starting health and ammo
         .health = 5,
@@ -103,6 +104,45 @@ void free_player(){
     free(player);
 }
 
+void set_mouse_angle(){
+    int mouseX, mouseY;
+    double centerPlayer_x, centerPlayer_y;
+
+    centerPlayer_x = player->x + (player->sprite_rect.w/2);
+    centerPlayer_y = player->y + (player->sprite_rect.h/2);
+    SDL_GetMouseState(&mouseX, &mouseY);
+    double rise = centerPlayer_y-mouseY;
+    double run = centerPlayer_x-mouseX;
+
+    // when run is negative, on right side of player
+    // when rise is negative, on bottom side of player
+    // if rise is positive and run is negative - in 1st quadrant
+    bool quad_one = (rise >= 0.0 && run >= 0.0);
+    // if rise is positive and run is negative - in 2nd quadrant
+    bool quad_two = (rise >= 0.0 && run <= 0.0);
+    // if rise is negative and run is positive - in 3rd quadrant
+    bool quad_three = (rise <= 0.0 && run <= 0.0);
+    // if rise is negative and run is negative - in 4th quadrant
+    bool quad_four = (rise <= 0.0 && run >= 0.0);
+    double slope = (fabs(rise))/(fabs(run));
+    double slopeRadians = atan2(fabs(rise), fabs(run));
+    double slopeDegrees = slopeRadians * 180 / M_PI;
+    double mouseAngle = 0.0;
+    if(quad_one){
+        mouseAngle = 180.0 + slopeDegrees;
+    }else if(quad_two){
+        mouseAngle = 270.0 + (90-slopeDegrees);
+    }else if(quad_three){
+        mouseAngle = slopeDegrees;
+    }else if(quad_four){
+        mouseAngle = 90.0 + (90-slopeDegrees);
+    }else{
+        printf("this shouldn't happen...\nRISE: %3.f\nRUN: %3.f\n", rise, run);
+    }
+    
+    player->angleToArrow = mouseAngle;
+}
+
 void move_player(){
     bool no_movement_pressed = (!controller->w_pressed && !controller->a_pressed && !controller->s_pressed && !controller->d_pressed);
     if((controller->a_pressed && controller->d_pressed) || (controller->w_pressed && controller->s_pressed))
@@ -115,17 +155,39 @@ void move_player(){
 
     if(player->state != PLAYER_STATE_RUNNING) set_player_state(PLAYER_STATE_RUNNING);
     if(controller->a_pressed && !controller->d_pressed){
+        if(controller->w_pressed || controller->s_pressed){
+            player->x -= (player->speed*0.7);
+        }else {
+            player->x -= player->speed;
+        }
         player->default_direction = false;
-        player->x -= player->speed;
-
     }
     if(controller->d_pressed && !controller->a_pressed){
+        if(controller->w_pressed || controller->s_pressed){
+            player->x += (player->speed*0.7);
+        }else {
+            player->x += player->speed;
+        }
         player->default_direction = true;
-        player->x += player->speed;
+    }
+    if(controller->w_pressed && !controller->s_pressed){
+        if(controller->a_pressed || controller->d_pressed){
+            player->y -= (player->speed*0.7);
+        }else {
+            player->y -= player->speed;
+        }
+    }
+    if(controller->s_pressed && !controller->w_pressed){
+        if(controller->a_pressed || controller->d_pressed){
+            player->y += (player->speed*0.7);
+        }else {
+            player->y += player->speed;
+        }
     }
 }
 
 void tick_player(){
+    set_mouse_angle();
     move_player();
     animate(&player->current_animation);
 }
